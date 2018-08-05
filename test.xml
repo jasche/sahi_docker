@@ -15,13 +15,13 @@
 	
 	
 	<target name="set_properties_firefox" depends="set_timestamp">
-    	<property name="scriptDir" value="/home/juergen/sahi_pro/userdata/scripts/"/>
+    	<property name="scriptDir" value="/sahi_pro/userdata/scripts/"/>
     	<property name="scriptName" value="test3.sah"/>
 		<property name="browser" value="firefox"/>
 		<property name="startWith" value="desktopbrowser"/>
 		<property name="sendemail" value="false"/>
 		<property name="emailtrigger" value="success,failure"/>
-		<property name="emailproperties" value="/home/juergen/sahi_pro/userdata/config/email.properties"/>
+		<property name="emailproperties" value="/sahi_pro/userdata/config/email.properties"/>
 		<property name="sendemailperiodically" value="false"/>
 		<property name="sendemailperiodicallytime" value=""/>
 		<property name="emailPasswordHidden" value="true"/>

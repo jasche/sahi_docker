@@ -1,0 +1,3 @@
+_navigateTo("http://www.optica.de");
+_click(_link("Heilmittel"));
+_click(_link("MeinOptica"));

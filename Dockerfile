@@ -55,7 +55,7 @@ RUN cp /sahi_pro/lib/ant-sahi.jar /usr/share/ant/lib/
  
 
 COPY test.xml test.xml
-
+COPY test.sah /sahi_pro/userdata/scripts/test3.sah
  
 
 COPY docker-entrypoint.sh /usr/local/bin/
