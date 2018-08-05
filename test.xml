@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+/**
+ * Copyright Tyto Software Pvt. Ltd.
+ */
+-->
+<project name="demo" default="runtestsfirefox">
+	<taskdef name="sahi" classname="net.sf.sahi.ant.RunSahiTask" classpath="lib/ant-sahi.jar"/>
+	
+	<target name="set_timestamp">
+        <tstamp>
+            <format property="ts" pattern="yyyy_MM_dd__HH_mm_ss" locale="en, IN"/>
+        </tstamp>
+	</target>
+	
+	
+	<target name="set_properties_firefox" depends="set_timestamp">
+    	<property name="scriptDir" value="/home/juergen/sahi_pro/userdata/scripts/"/>
+    	<property name="scriptName" value="test3.sah"/>
+		<property name="browser" value="firefox"/>
+		<property name="startWith" value="desktopbrowser"/>
+		<property name="sendemail" value="false"/>
+		<property name="emailtrigger" value="success,failure"/>
+		<property name="emailproperties" value="/home/juergen/sahi_pro/userdata/config/email.properties"/>
+		<property name="sendemailperiodically" value="false"/>
+		<property name="sendemailperiodicallytime" value=""/>
+		<property name="emailPasswordHidden" value="true"/>
+		<property name="baseURL" value="http://www.optica.de"/>
+		<property name="host" value="localhost"/>
+		<property name="port" value="9999"/>
+		<property name="singlesession" value="false"/>
+		<property name="threads" value="5"/>
+		<property name="showPeriodicSummary" value="true"/>
+		<property name="failedSuiteName" value="test3.sah"/>
+		<property name="failedSuite" value="/${failedSuiteName}"/>
+		<property name="jsCodeCoverage" value="false"/>
+	</target>
+
+	<target name="runtestsfirefox" depends="set_properties_firefox">
+		<sahi suite="${scriptName}"
+			browsertype="${browser}"
+			startWith="${startWith}"
+			sendemail="${sendemail}"
+	        emailtrigger="${emailtrigger}"
+	        emailproperties="${emailproperties}"
+	        sendEmailPeriodically="${sendemailperiodically}"
+			sendEmailPeriodicallyTime="${sendemailperiodicallytime}"
+			emailPasswordHidden="${emailPasswordHidden}"
+			baseurl="${baseURL}"
+			sahihost="${host}"
+			sahiport="${port}"
+			scriptsPathMaster="${scriptDir}"
+			failureproperty="sahi.failed.${browser}"
+			failedSuiteName="${failedSuiteName}"
+			haltonfailure="false"
+			singlesession="${singlesession}"
+			showPeriodicSummary="${showPeriodicSummary}"
+			threads="${threads}"
+			jsCodeCoverage="${jsCodeCoverage}">
+		</sahi>
+		<antcall target="failsahifirefox"/>
+	</target>
+
+    <target name="failsahifirefox" depends="set_properties_firefox" if="sahi.failed.${browser}">
+        <fail message="Sahi tests failed on browser ${browser}!"/>
+    </target>		
+</project>
