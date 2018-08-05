@@ -4,7 +4,7 @@ FROM openjdk:slim
 
 # install xvfb and jni
 
-RUN apt-get update && apt-get install -y libswt-gtk2-4-jni xvfb wget ant firefox net-tools && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libswt-gtk2-4-jni xvfb wget ant firefox net-tools telnet && rm -rf /var/lib/apt/lists/*
 
  
 
